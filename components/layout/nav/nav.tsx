@@ -23,13 +23,13 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white/30 backdrop-blur-md shadow-lg border border-white/20 rounded-b-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-bold text-gray-800">
-            Logo
+            SkyScape
           </Link>
-          
+
           <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
@@ -40,14 +40,14 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            
+
             {authButtons.map((button) => (
               <Button key={button.name} variant={button.variant}>
                 {button.name}
               </Button>
             ))}
           </div>
-          
+
           <button
             onClick={toggleMenu}
             className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
@@ -64,7 +64,7 @@ export default function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-white/30 backdrop-blur-md border-t border-white/20">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <Link
