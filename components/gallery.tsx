@@ -41,19 +41,49 @@ export default function GallerySection() {
     <section className="py-24">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Nuestra Galería</h2>
-        <Slider {...settings}>
-          {images.map((src, index) => (
-            <div key={index} className="px-2">
-              <Image
-                src={src.src}
-                alt={src.alt}
-                width={400}
-                height={300}
-                className="rounded-lg object-cover w-full h-64"
-              />
-            </div>
-          ))}
-        </Slider>
+        <div className="relative gallery-wrapper">
+          <style jsx global>{`
+            .gallery-wrapper .slick-prev,
+            .gallery-wrapper .slick-next {
+              z-index: 10;
+              width: 40px;
+              height: 40px;
+            }
+            .gallery-wrapper .slick-prev {
+              left: 25px;
+            }
+            .gallery-wrapper .slick-next {
+              right: 25px;
+            }
+            .gallery-wrapper .slick-prev:before,
+            .gallery-wrapper .slick-next:before {
+              font-size: 40px;
+              opacity: 0.8;
+              text-shadow: 0 0 10px rgba(0,0,0,0.3);
+            }
+            @media (max-width: 640px) {
+              .gallery-wrapper .slick-prev {
+                left: 5px;
+              }
+              .gallery-wrapper .slick-next {
+                right: 5px;
+              }
+            }
+          `}</style>
+          <Slider {...settings}>
+            {images.map((image, index) => (
+              <div key={index} className="px-2">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={400}
+                  height={300}
+                  className="rounded-lg object-cover w-full h-64"
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );
