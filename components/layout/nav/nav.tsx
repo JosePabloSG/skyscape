@@ -38,7 +38,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed w-full z-50 bg-white/30 backdrop-blur-md">
+    <nav className="fixed inset-x-0 top-0 md:m-3 z-50 bg-white/30 backdrop-blur-md rounded-sm">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16 items-center">
           <motion.div

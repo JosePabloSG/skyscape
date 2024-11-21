@@ -48,7 +48,7 @@ export default function RootLayout({
         className={cn(
           poppins.className,
           calistoga.variable,
-          "bg-gray-400 antialiased dark:bg-dark-950 mx-4"
+          "bg-gray-400 antialiased dark:bg-dark-950 mx-4 overflow-y-auto m-0 p-0"
         )}
       >
         <ThemeProvider attribute='class' enableSystem={true}>
