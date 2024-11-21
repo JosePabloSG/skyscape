@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { calistoga, poppins } from "@/lib/fonts";
 import { ThemeProvider } from "./provider";
 import Navbar from "@/components/layout/nav/nav";
+import Footer from "@/components/layout/footer/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -54,6 +55,7 @@ export default function RootLayout({
         <ThemeProvider attribute='class' enableSystem={true}>
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

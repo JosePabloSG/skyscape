@@ -3,6 +3,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { SECTION_IDS } from "@/lib/sections";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -31,6 +32,11 @@ export default function Navbar() {
     }
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav className="fixed inset-x-0 top-0 md:m-3 z-50 bg-white/30 backdrop-blur-md rounded-sm">
       <div className="max-w-7xl mx-auto px-4">
@@ -52,20 +58,42 @@ export default function Navbar() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex space-x-4"
             >
-              {navItems.map((item) => (
-                <motion.div
-                  key={item.name}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.hero)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Inicio
+              </button>
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.services)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Servicios
+              </button>
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.gallery)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Galería
+              </button>
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.about)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Nosotros
+              </button>
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.process)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Proceso
+              </button>
+              <button 
+                onClick={() => scrollToSection(SECTION_IDS.cta)}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Contacto
+              </button>
             </motion.div>
           </div>
 

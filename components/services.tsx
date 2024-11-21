@@ -61,7 +61,7 @@ export default function ServicesSection() {
         >
           {services.map((service, index) => (
             <motion.div key={index} variants={cardVariants}>
-              <Card className="flex flex-col h-full overflow-hidden max-w-sm hover:shadow-lg transition-shadow duration-300">
+              <Card className="bg-white/30 backdrop-blur-md flex flex-col h-full overflow-hidden max-w-sm hover:shadow-lg transition-shadow duration-300">
                 <div className="relative w-full h-48">
                   <Image
                     src="/hero.jpg"
