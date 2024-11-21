@@ -23,13 +23,13 @@ export default function HeroSection() {
           <p className="text-lg md:text-xl text-muted-foreground">
             Capturamos imágenes aéreas impresionantes que transforman cada proyecto en una experiencia visual única. Explora el mundo desde nuevas alturas con nuestra fotografía profesional con dron.
           </p>
-          <motion.button 
+          {/* <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:bg-primary/90 transition-colors"
           >
             Explora nuestro trabajo
-          </motion.button>
+          </motion.button> */}
         </motion.div>
         <motion.div 
           initial={{ opacity: 0, x: 50 }}
