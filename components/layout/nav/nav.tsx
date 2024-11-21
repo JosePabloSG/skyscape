@@ -2,7 +2,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
@@ -13,11 +12,6 @@ export default function Navbar() {
     { name: "Servicios", href: "#services" },
     { name: "Proceso", href: "#process" },
     { name: "Contacto", href: "#contact" },
-  ]
-
-  const authButtons: { name: string; variant: "link" | "outline" | "default" | "ghost" | "destructive" | "secondary" }[] = [
-    { name: "Iniciar Sesión", variant: "ghost" },
-    { name: "Registrarse", variant: "default" },
   ]
 
   const menuVariants = {
@@ -73,25 +67,6 @@ export default function Navbar() {
                 </motion.div>
               ))}
             </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center space-x-2"
-            >
-              {authButtons.map((button) => (
-                <motion.div
-                  key={button.name}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button variant={button.variant}>
-                    {button.name}
-                  </Button>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
 
           <motion.button
@@ -136,25 +111,6 @@ export default function Navbar() {
                   >
                     {item.name}
                   </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-            <motion.div 
-              className="pt-4 pb-3 border-t border-gray-200 px-4 space-y-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              {authButtons.map((button, index) => (
-                <motion.div
-                  key={button.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                >
-                  <Button variant={button.variant} className="w-full">
-                    {button.name}
-                  </Button>
                 </motion.div>
               ))}
             </motion.div>
