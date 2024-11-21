@@ -1,90 +1,166 @@
 'use client'
-
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { useState } from "react"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const navItems = [
-  { name: 'Servicios', href: '/servicios' },
-  { name: 'Lugares', href: '/lugares' },
-  { name: 'Eventos', href: '/eventos' },
-  { name: 'Sobre mí', href: '/sobre-mi' },
-]
-
-const authButtons = [
-  { name: 'Iniciar sesión', variant: 'outline' as const },
-  { name: 'Registrarse', variant: 'default' as const },
-]
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const navItems = [
+    { name: "Inicio", href: "/" },
+    { name: "Servicios", href: "#services" },
+    { name: "Proceso", href: "#process" },
+    { name: "Contacto", href: "#contact" },
+  ]
+
+  const authButtons: { name: string; variant: "link" | "outline" | "default" | "ghost" | "destructive" | "secondary" }[] = [
+    { name: "Iniciar Sesión", variant: "ghost" },
+    { name: "Registrarse", variant: "default" },
+  ]
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3
+      }
+    },
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
 
   return (
-    <nav className="bg-white/30 backdrop-blur-md shadow-lg border border-white/20 rounded-b-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold text-gray-800">
-            SkyScape
-          </Link>
+    <nav className="fixed w-full z-50 bg-white/30 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between h-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="font-bold text-2xl text-primary">
+              SkyScape
+            </Link>
+          </motion.div>
 
           <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex space-x-4"
+            >
+              {navItems.map((item) => (
+                <motion.div
+                  key={item.name}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
 
-            {authButtons.map((button) => (
-              <Button key={button.name} variant={button.variant}>
-                {button.name}
-              </Button>
-            ))}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center space-x-2"
+            >
+              {authButtons.map((button) => (
+                <motion.div
+                  key={button.name}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button variant={button.variant}>
+                    {button.name}
+                  </Button>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
-          <button
-            onClick={toggleMenu}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
-            aria-expanded={isMenuOpen}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className="sr-only">Abrir menú principal</span>
             {isMenuOpen ? (
               <X className="block h-6 w-6" aria-hidden="true" />
             ) : (
               <Menu className="block h-6 w-6" aria-hidden="true" />
             )}
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="md:hidden bg-white/30 backdrop-blur-md border-t border-white/20">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-gray-800 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <div className="pt-4 pb-3 border-t border-gray-200 px-4 space-y-2">
-            {authButtons.map((button) => (
-              <Button key={button.name} variant={button.variant} className="w-full">
-                {button.name}
-              </Button>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+            className="md:hidden bg-white/30 backdrop-blur-md border-t border-white/20"
+          >
+            <motion.div 
+              className="px-2 pt-2 pb-3 space-y-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="text-gray-600 hover:text-gray-800 block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+            <motion.div 
+              className="pt-4 pb-3 border-t border-gray-200 px-4 space-y-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {authButtons.map((button, index) => (
+                <motion.div
+                  key={button.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                >
+                  <Button variant={button.variant} className="w-full">
+                    {button.name}
+                  </Button>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }

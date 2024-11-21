@@ -1,5 +1,7 @@
+'use client'
 import { MessageSquare, Calendar, Camera, Rocket } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 
 const steps = [
   {
@@ -46,26 +48,86 @@ const steps = [
 ]
 
 export default function ProcessSection() {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8
+      }
+    }
+  }
+
+  const lineVariants = {
+    hidden: { height: 0 },
+    visible: {
+      height: "100%",
+      transition: {
+        duration: 1.5
+      }
+    }
+  }
+
+  const dotVariants = {
+    hidden: { scale: 0 },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-6">Nuestro Proceso de Trabajo</h2>
-        <p className="text-center text-lg mb-12 max-w-2xl mx-auto text-muted-foreground">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center mb-6"
+        >
+          Nuestro Proceso de Trabajo
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center text-lg mb-12 max-w-2xl mx-auto text-muted-foreground"
+        >
           Nuestro enfoque garantiza calidad y atención en cada detalle. Descubre cómo trabajamos:
-        </p>
+        </motion.p>
         <div className="relative">
-          {/* Línea vertical central */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary"></div>
+          <motion.div 
+            variants={lineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-primary origin-top"
+          />
           
           <div className="space-y-12">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                {/* Bolita en la línea temporal */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full z-10"></div>
+                <motion.div 
+                  variants={dotVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full z-10"
+                />
                 
                 <div className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <Card className="relative bg-white/30 backdrop-blur-md shadow-lg border border-white/20 rounded-lg">
+                  <motion.div 
+                    className={`md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : ''}`}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    <Card className="relative bg-white/30 backdrop-blur-md rounded-lg hover:shadow-lg transition-shadow duration-300">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 justify-center md:justify-start">
                           <step.icon className="h-6 w-6 text-primary" />
@@ -84,16 +146,19 @@ export default function ProcessSection() {
                         </ul>
                       </CardContent>
                     </Card>
-                  </div>
-                  <div className="md:w-2/12 flex justify-center items-center my-4 md:my-0">
-                    {/* Número del paso */}
+                  </motion.div>
+                  <motion.div 
+                    className="md:w-2/12 flex justify-center items-center my-4 md:my-0"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg z-20">
                       {index + 1}
                     </div>
-                  </div>
-                  <div className="md:w-5/12">
-                    {/* Espacio para mantener la alineación en desktop */}
-                  </div>
+                  </motion.div>
+                  <div className="md:w-5/12" />
                 </div>
               </div>
             ))}
