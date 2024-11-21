@@ -26,7 +26,7 @@ export default function ServicesSection() {
             <Card key={index} className="flex flex-col h-full overflow-hidden max-w-sm hover:shadow-lg transition-shadow duration-300">
               <div className="relative w-full h-48">
                 <Image
-                  src="/img/hero.jpg"
+                  src="/hero.jpg"
                   alt={service.title}
                   fill
                   className="object-cover"

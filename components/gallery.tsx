@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function GallerySection() {
-  const images = Array(10).fill("/img/hero.jpg");
+  const images = Array(10).fill("/hero.jpg");
 
   const settings = {
     dots: true,

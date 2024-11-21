@@ -17,7 +17,7 @@ export default function HeroSection() {
         </div>
         <div className="md:w-1/2">
           <Image
-            src="/img/hero.jpg"
+            src="/hero.jpg"
             alt="Imagen aérea capturada por dron"
             width={600}
             height={400}
