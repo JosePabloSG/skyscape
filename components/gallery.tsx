@@ -6,7 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function GallerySection() {
-  const images = Array(10).fill("/hero.jpg");
+  const images = Array.from({ length: 9 }, (_, index) => ({
+    src: `/img/img-${index + 1}.jpg`,
+    alt: `Imagen de galería ${index + 1}`,
+  }));
 
   const settings = {
     dots: true,
@@ -42,8 +45,8 @@ export default function GallerySection() {
           {images.map((src, index) => (
             <div key={index} className="px-2">
               <Image
-                src={src}
-                alt={`Imagen de galería ${index + 1}`}
+                src={src.src}
+                alt={src.alt}
                 width={400}
                 height={300}
                 className="rounded-lg object-cover w-full h-64"

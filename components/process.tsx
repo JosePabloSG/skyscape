@@ -6,46 +6,47 @@ import { motion } from "framer-motion"
 const steps = [
   {
     icon: MessageSquare,
-    title: "Consulta Inicial",
-    description: "Nos reunimos para entender tu visión y necesidades específicas del proyecto.",
-    details: [
-      "Definimos el tipo de proyecto (Evento, marketing, inspección, etc.)",
-      "Determinamos la ubicación y el alcance del trabajo",
-      "Establecemos los resultados esperados (Estilo, formatos, tiempos de entrega)"
+    "title": "Consulta Inicial",
+    "description": "Nos reunimos para entender tu visión y las necesidades específicas de tu proyecto.",
+    "details": [
+      "Definimos el tipo de proyecto: evento, campaña de marketing, inspección técnica, entre otros.",
+      "Identificamos la ubicación y el alcance del trabajo.",
+      "Establecemos los resultados esperados, como estilo, formato de entrega y tiempos."
     ]
   },
   {
     icon: Calendar,
-    title: "Planificación",
-    description: "Creamos un plan personalizado para asegurar el éxito de tu proyecto.",
-    details: [
-      "Estudiamos la ubicación para identificar los mejores ángulos y horarios",
-      "Revisamos las condiciones meteorológicas para garantizar seguridad y calidad",
-      "Obtenemos los permisos necesarios para volar el dron (si aplica)",
-      "Preparamos nuestros drones con tecnología de última generación"
+    "title": "Planificación",
+    "description": "Diseñamos un plan a la medida para garantizar el éxito de tu proyecto.",
+    "details": [
+      "Analizamos la ubicación para encontrar los mejores ángulos y horarios.",
+      "Revisamos las condiciones climáticas para asegurar seguridad y calidad.",
+      "Gestionamos los permisos necesarios para el vuelo del dron, si aplica.",
+      "Preparamos nuestros drones con tecnología avanzada para un rendimiento óptimo."
     ]
   },
   {
     icon: Camera,
-    title: "Captura",
-    description: "Realizamos la grabación o fotografía con creatividad y profesionalismo.",
-    details: [
-      "Operación segura y eficiente del dron por un piloto certificado",
-      "Captura de tomas dinámicas y creativas desde perspectivas únicas",
-      "Flexibilidad para adaptarnos a cambios o requerimientos en el momento"
+    "title": "Captura",
+    "description": "Realizamos la grabación o fotografía con creatividad y profesionalismo.",
+    "details": [
+      "Un piloto certificado opera el dron de manera segura y eficiente.",
+      "Capturamos imágenes dinámicas y creativas desde perspectivas únicas.",
+      "Nos adaptamos rápidamente a cualquier cambio o nueva solicitud durante el trabajo."
     ]
   },
   {
     icon: Rocket,
-    title: "Entrega",
-    description: "Procesamos y entregamos resultados que superan expectativas.",
-    details: [
-      "Edición profesional para resaltar la belleza y calidad de las imágenes o videos",
-      "Entrega en los formatos que necesitas (RAW, JPEG, MP4, etc.)",
-      "Cumplimiento de los tiempos acordados para una entrega rápida"
+    "title": "Entrega",
+    "description": "Te entregamos resultados que superan tus expectativas.",
+    "details": [
+      "Editamos las imágenes y videos profesionalmente para resaltar su calidad.",
+      "Ofrecemos los archivos en los formatos que necesitas: desde originales hasta listos para uso, como JPEG, MP4, entre otros.",
+      "Cumplimos con los plazos acordados para una entrega rápida y puntual."
     ]
   }
 ]
+
 
 export default function ProcessSection() {
   const cardVariants = {

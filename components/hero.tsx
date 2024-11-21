@@ -38,7 +38,7 @@ export default function HeroSection() {
           className="md:w-1/2"
         >
           <Image
-            src="/hero.jpg"
+            src="/img/hero.jpg"
             alt="Imagen aérea capturada por dron"
             width={600}
             height={400}

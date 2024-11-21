@@ -71,7 +71,7 @@ export default function AboutSection() {
             className="lg:w-1/2"
           >
             <Image
-              src="/hero.jpg"
+              src="/img/photo.jpg"
               alt="Nuestro equipo en acción"
               width={600}
               height={400}
