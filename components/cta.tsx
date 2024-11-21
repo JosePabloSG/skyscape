@@ -74,7 +74,7 @@ export default function CTASection() {
   }
 
   return (
-    <section className="py-16">
+    <section className="py-24">
       <div className="container mx-auto px-4">
         <motion.div 
           className="max-w-2xl mx-auto text-center mb-12"

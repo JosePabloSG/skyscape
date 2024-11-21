@@ -9,32 +9,31 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navItems = [
-    { name: "Inicio", href: "/" },
-    { name: "Servicios", href: "#services" },
-    { name: "Proceso", href: "#process" },
-    { name: "Contacto", href: "#contact" },
+    { name: "Inicio", sectionId: SECTION_IDS.hero },
+    { name: "Servicios", sectionId: SECTION_IDS.services },
+    { name: "Galería", sectionId: SECTION_IDS.gallery },
+    { name: "Nosotros", sectionId: SECTION_IDS.about },
+    { name: "Proceso", sectionId: SECTION_IDS.process },
+    { name: "Contacto", sectionId: SECTION_IDS.cta },
   ]
 
   const menuVariants = {
     closed: {
       opacity: 0,
       height: 0,
-      transition: {
-        duration: 0.3
-      }
+      transition: { duration: 0.3 }
     },
     open: {
       opacity: 1,
       height: "auto",
-      transition: {
-        duration: 0.3
-      }
+      transition: { duration: 0.3 }
     }
   }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false); // Close mobile menu after clicking
   };
 
   return (
@@ -58,42 +57,15 @@ export default function Navbar() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex space-x-4"
             >
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.hero)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Inicio
-              </button>
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.services)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Servicios
-              </button>
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.gallery)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Galería
-              </button>
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.about)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Nosotros
-              </button>
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.process)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Proceso
-              </button>
-              <button 
-                onClick={() => scrollToSection(SECTION_IDS.cta)}
-                className="text-gray-700 hover:text-primary transition-colors"
-              >
-                Contacto
-              </button>
+              {navItems.map((item) => (
+                <button 
+                  key={item.name}
+                  onClick={() => scrollToSection(item.sectionId)}
+                  className="text-gray-700 hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </button>
+              ))}
             </motion.div>
           </div>
 
@@ -133,12 +105,12 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Link
-                    href={item.href}
-                    className="text-gray-600 hover:text-gray-800 block px-3 py-2 rounded-md text-base font-medium"
+                  <button
+                    onClick={() => scrollToSection(item.sectionId)}
+                    className="text-gray-600 hover:text-gray-800 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
             </motion.div>
