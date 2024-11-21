@@ -69,16 +69,6 @@ export default function ProcessSection() {
     }
   }
 
-  const dotVariants = {
-    hidden: { scale: 0 },
-    visible: {
-      scale: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  }
-
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
