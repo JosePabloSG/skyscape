@@ -36,7 +36,6 @@ export default function Navbar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMenuOpen(false); // Cierra el menú móvil después de hacer clic
   };
 
   return (
