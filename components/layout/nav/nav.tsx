@@ -34,6 +34,7 @@ export default function Navbar() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      setIsMenuOpen(false); // Cierra el menú antes de redirigir
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
