@@ -1,12 +1,13 @@
-'use client'
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+'use client';
+
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SECTION_IDS } from "@/lib/sections";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { name: "Inicio", sectionId: SECTION_IDS.hero },
@@ -15,31 +16,34 @@ export default function Navbar() {
     { name: "Nosotros", sectionId: SECTION_IDS.about },
     { name: "Proceso", sectionId: SECTION_IDS.process },
     { name: "Contacto", sectionId: SECTION_IDS.cta },
-  ]
+  ];
 
   const menuVariants = {
     closed: {
       opacity: 0,
       height: 0,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3 },
     },
     open: {
       opacity: 1,
       height: "auto",
-      transition: { duration: 0.3 }
-    }
-  }
+      transition: { duration: 0.3 },
+    },
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false); // Close mobile menu after clicking
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false); // Cierra el menú móvil después de hacer clic
   };
 
   return (
     <nav className="fixed inset-x-0 top-0 md:m-3 z-50 bg-white/30 backdrop-blur-md rounded-sm">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -50,15 +54,16 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex space-x-4"
             >
               {navItems.map((item) => (
-                <button 
+                <button
                   key={item.name}
                   onClick={() => scrollToSection(item.sectionId)}
                   className="text-gray-700 hover:text-primary transition-colors"
@@ -69,6 +74,7 @@ export default function Navbar() {
             </motion.div>
           </div>
 
+          {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="md:hidden"
@@ -83,6 +89,7 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -92,7 +99,7 @@ export default function Navbar() {
             variants={menuVariants}
             className="md:hidden bg-white/30 backdrop-blur-md border-t border-white/20"
           >
-            <motion.div 
+            <motion.div
               className="px-2 pt-2 pb-3 space-y-1"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -118,5 +125,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
-  )
+  );
 }
